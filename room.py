@@ -13,8 +13,8 @@ class Room:
         self.canvas = canvas
         self.points = points
         length = len(points)
-        self.directions = [Vec2()] * length
-        self.normals = [Vec2()] * length
+        self.directions = [Vec2() for _ in range(length)]
+        self.normals = [Vec2() for _ in range(length)]
         for i in range(length):
             direc = points[(i + 1) % length] - points[i]
             self.directions[i] = direc

@@ -14,13 +14,13 @@ class Ball:
         self,
         canvas,
         radius: int = 10,
-        position: Vec2 = Vec2(0, 0),
-        velocity: Vec2 = Vec2(0, 0),
+        position: Vec2 | None = None,
+        velocity: Vec2 | None = None,
     ) -> None:
         self.canvas = canvas
         self.radius = radius
-        self.position = position
-        self.velocity = velocity
+        self.position = position if position is not None else Vec2()
+        self.velocity = velocity if velocity is not None else Vec2()
 
     def __repr__(self) -> str:
         return f"Ball(canvas={self.canvas}, radius={self.radius}, position={self.position}, velocity={self.velocity})"

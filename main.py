@@ -35,10 +35,10 @@ class Simulation:
         self.prev_time = cur_time
         self.canvas.after(16, self.update)
 
-    def physics_update(self, delta_time) -> None:
+    def physics_update(self, delta_time: float) -> None:
         self.ball.move_and_collide(delta_time, self.room)
 
-    def pause(self, e) -> None:
+    def pause(self, e: tk.Event) -> None:
         self.paused = not self.paused
 
 

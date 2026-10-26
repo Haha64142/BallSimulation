@@ -1,15 +1,16 @@
 import math
 from dataclasses import dataclass
+from typing import Self
 
 
-@dataclass
+@dataclass(slots=True)
 class Vec2:
     x: float = 0
     y: float = 0
 
     @classmethod
-    def from_tuple(cls, vec: tuple[float, float]) -> Vec2:
-        return cls(vec[0], vec[1])
+    def from_tuple(cls, vec: tuple[float, float]) -> Self:
+        return cls(*vec)
 
     def __add__(self, other: Vec2) -> Vec2:
         if isinstance(other, Vec2):
