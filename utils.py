@@ -52,3 +52,7 @@ class Vec2:
         if mag == 0:
             return Vec2()
         return self / mag
+
+
+def sign(x: int | float):
+    return (x > 0) - (x < 0)

@@ -7,7 +7,7 @@ class Room:
     points: list[Vec2]
     directions: list[Vec2]
     normals: list[Vec2]
-    object_id: int
+    object_id: int | None = None
 
     def __init__(self, canvas: tk.Canvas, points: list[Vec2]) -> None:
         self.canvas = canvas
@@ -20,8 +20,20 @@ class Room:
             self.directions[i] = direc
             self.normals[i] = Vec2(direc.y, -direc.x).normalize()
 
-    def draw(self) -> int:
-        self.object_id = self.canvas.create_polygon(
-            [(v.x, v.y) for v in self.points], fill="", outline="black"
-        )
+    def draw(self) -> int | None:
+        if not self.object_id == None:
+            self.erase()
+
+        if len(self.points) > 1:
+            self.object_id = self.canvas.create_polygon(
+                [(v.x, v.y) for v in self.points], fill="", outline="black"
+            )
+
         return self.object_id
+
+    def erase(self) -> None:
+        if self.object_id == None:
+            return
+
+        self.canvas.delete(self.object_id)
+        self.object_id = None
